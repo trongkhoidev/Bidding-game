@@ -205,48 +205,6 @@ public class Processor {
     frame.setVisible(true);
 }
 
-//    private void showAccountInfo() {
-//        int balance = controller.getBalance(currentUser);
-//        JOptionPane.showMessageDialog(null, "Username: " + currentUser + "\nBalance: " + balance);
-//    }
-//
-//    private void showAddBalanceScreen() {
-//        String input = JOptionPane.showInputDialog("Enter amount to add:");
-//        try {
-//            int amount = Integer.parseInt(input);
-//            if (amount > 0) {
-//                int newBalance = controller.getBalance(currentUser) + amount;
-//                controller.updateBalance(currentUser, newBalance);
-//                JOptionPane.showMessageDialog(null, "Balance updated! New Balance: " + newBalance);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Invalid amount!");
-//            }
-//        } catch (NumberFormatException ex) {
-//            JOptionPane.showMessageDialog(null, "Please enter a valid number!");
-//        }
-//    }
-
-//    private void showChangePasswordScreen() {
-//        JPasswordField oldPasswordField = new JPasswordField();
-//        JPasswordField newPasswordField = new JPasswordField();
-//        Object[] message = {
-//            "Old Password:", oldPasswordField,
-//            "New Password:", newPasswordField
-//        };
-//
-//        int option = JOptionPane.showConfirmDialog(null, message, "Change Password", JOptionPane.OK_CANCEL_OPTION);
-//        if (option == JOptionPane.OK_OPTION) {
-//            String oldPassword = new String(oldPasswordField.getPassword());
-//            String newPassword = new String(newPasswordField.getPassword());
-//
-//            if (controller.validatePassword(currentUser, oldPassword)) {
-//                controller.changePassword(currentUser, newPassword);
-//                JOptionPane.showMessageDialog(null, "Password changed successfully!");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Old password is incorrect!");
-//            }
-//        }
-//    }
 
     private void handleBet(String choice, JTextField betField, JLabel numberLabel, JLabel balanceLabel, JLabel resultLabel) {
         try {
