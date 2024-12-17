@@ -131,6 +131,47 @@ public class Processor {
 
         frame.setVisible(true);
     }
+    
+    private void showAddBalance(JLabel balanceToUpdate) {
+        JFrame addBalanceFrame = new JFrame("Add Balance");
+        addBalanceFrame.setSize(300, 150);
+        
+        JPanel panel = new JPanel();
+        addBalanceFrame.add(panel);
+        panel.setLayout(null);
+
+        JLabel amountLabel = new JLabel("Amount to add:");
+        amountLabel.setBounds(10, 20, 100, 25);
+        panel.add(amountLabel);
+
+        JTextField amountField = new JTextField();
+        amountField.setBounds(120, 20, 150, 25);
+        panel.add(amountField);
+
+        JButton confirmButton = new JButton("Confirm");
+        confirmButton.setBounds(100, 60, 100, 25);
+        panel.add(confirmButton);
+
+        confirmButton.addActionListener(event -> {
+            try {
+                int addAmount = Integer.parseInt(amountField.getText());
+                if (addAmount > 0) {
+                    int balance = controller.getBalance(currentUser) + addAmount;
+                    controller.updateBalance(currentUser, balance);
+                    balanceToUpdate.setText("Balance: " + balance);
+                    JOptionPane.showMessageDialog(null, "Balance Updated Successfully!");
+                    addBalanceFrame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter a positive amount!");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number!");
+            }
+        });
+
+        addBalanceFrame.setLocationRelativeTo(null);
+        addBalanceFrame.setVisible(true);
+    }
 
     private void showGameScreen() {
     JFrame frame = new JFrame("Bidding");
@@ -179,23 +220,11 @@ public class Processor {
 
     upButton.addActionListener(e -> handleBet("UP", betField, numberLabel, balanceLabel, resultLabel));
     downButton.addActionListener(e -> handleBet("DOWN", betField, numberLabel, balanceLabel, resultLabel));
-
+    
     addBalanceButton.addActionListener(e -> {
-        String input = JOptionPane.showInputDialog("Enter amount to add:");
-        try {
-            int addAmount = Integer.parseInt(input);
-            if (addAmount > 0) {
-                int balance = controller.getBalance(currentUser) + addAmount;
-                controller.updateBalance(currentUser, balance);
-                balanceLabel.setText("Balance: " + balance);
-                JOptionPane.showMessageDialog(null, "Balance Updated!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid amount!");
-            }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid number!");
-        }
+        showAddBalance(balanceLabel);
     });
+
 
     logoutButton.addActionListener(e -> {
         frame.dispose();

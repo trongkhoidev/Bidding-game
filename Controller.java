@@ -19,7 +19,7 @@ public class Controller {
 
     public boolean createAccount(String username, String password, int balance) {
         if (accounts.containsKey(username)) {
-            return false; // Username đã tồn tại
+            return false; 
         }
         accounts.put(username, new Account(username, password, balance));
         saveAccounts();
